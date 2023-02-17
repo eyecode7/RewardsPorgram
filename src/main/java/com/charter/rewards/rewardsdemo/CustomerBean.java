@@ -16,8 +16,6 @@ public class CustomerBean {
 	private String name;
 	private int purchaseAmount; 
 	private int rewardsPoints;
-	private int monthlyRewardsPoints;
-	private int totalRewardsPoints;
 	private Date createdDate;
 	
 	 
@@ -56,17 +54,6 @@ public class CustomerBean {
 	public void setRewardsPoints(int rewardsPoints) {
 		this.rewardsPoints = rewardsPoints;
 	}
-	public int getMonthlyRewardsPoints() {
-		return monthlyRewardsPoints;
-	}
-	public void setMonthlyRewardsPoints(int monthlyRewardsPoints) {
-		this.monthlyRewardsPoints = monthlyRewardsPoints;
-	}
-	public int getTotalRewardsPoints() {
-		return totalRewardsPoints;
-	}
-	public void setTotalRewardsPoints(int totalRewardsPoints) {
-		this.totalRewardsPoints = totalRewardsPoints;
-	}
+
 
 }

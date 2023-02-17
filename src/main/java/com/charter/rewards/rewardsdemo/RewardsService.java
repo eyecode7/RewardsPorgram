@@ -75,41 +75,39 @@ public class RewardsService {
 	
 	
 	public List <CustomerRewardsTotalBean> calculateMonthlyandTotalRewards() {
-		List<CustomerRewardsTotalBean> crbList = new ArrayList<CustomerRewardsTotalBean>();
-		List<MonthlyRewardBean> mbList = new ArrayList<MonthlyRewardBean>();
-		List<MonthlyRewardBean> mbsList = new ArrayList<MonthlyRewardBean>();
-		List<RewardsTotal>	cb = customerRepository.totalRewardsPoint();
-		List<MonthlyTotal> mt = customerRepository.monthlyTotalRewards();
+		List<CustomerRewardsTotalBean> custRewardsList = new ArrayList<CustomerRewardsTotalBean>();
+		List<MonthlyRewardBean> monthlyRewardsList = new ArrayList<MonthlyRewardBean>();
+		List<RewardsTotal>	rewardsTotal = customerRepository.totalRewardsPoint();
+		List<MonthlyTotal> monthlyTotal = customerRepository.monthlyTotalRewards();
 
-		for (RewardsTotal cb2 : cb) {
+		for (RewardsTotal rewardsFromDB : rewardsTotal) {
 			CustomerRewardsTotalBean crb = new CustomerRewardsTotalBean();
-			crb.setName(cb2.getName());
-			crb.setTotalRewardsPoints(cb2.getTotalRewardsPoints());
-			crb.setMonthlyRewardsPoints(mbsList);
-			crbList.add(crb);
-			System.out.println("Name " + cb2.getName() + " total Rewards " + cb2.getTotalRewardsPoints());
+			crb.setName(rewardsFromDB.getName());
+			crb.setTotalRewardsPoints(rewardsFromDB.getTotalRewardsPoints());
+			custRewardsList.add(crb);
+			System.out.println("Name " + rewardsFromDB.getName() + " total Rewards " + rewardsFromDB.getTotalRewardsPoints());
 		}
 
-		for (MonthlyTotal cb3 : mt) {
+		for (MonthlyTotal monthlyTotalFromDB : monthlyTotal) {
 
 			MonthlyRewardBean mb = new MonthlyRewardBean();
 
-			mb.setName(cb3.getName());
-			mb.setMonth(cb3.getRewardMonth());
-			mb.setTotalPoints(cb3.getTotalPointsPerMonth());
-			System.out.println("Name " + cb3.getName() + " total Rewards Monthly " + cb3.getTotalPointsPerMonth()
-					+ " Reward Month " + cb3.getRewardMonth());
-			mbList.add(mb);
+			mb.setName(monthlyTotalFromDB.getName());
+			mb.setMonth(monthlyTotalFromDB.getRewardMonth());
+			mb.setTotalPoints(monthlyTotalFromDB.getTotalPointsPerMonth());
+			System.out.println("Name " + monthlyTotalFromDB.getName() + " total Rewards Monthly " + monthlyTotalFromDB.getTotalPointsPerMonth()
+					+ " Reward Month " + monthlyTotalFromDB.getRewardMonth());
+			monthlyRewardsList.add(mb);
 
 		}
 		
 		
-		for (CustomerRewardsTotalBean custrewards : crbList) {
-			assignMonthlyRewards(custrewards,mbList);
+		for (CustomerRewardsTotalBean custrewards : custRewardsList) {
+			assignMonthlyRewards(custrewards,monthlyRewardsList);
 			
 		}
 
-		return crbList;
+		return custRewardsList;
 
 	}
 	
